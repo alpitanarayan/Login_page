@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital@1&family=Merriweather:ital,wght@0,300;0,400;1,300&family=PT+Serif&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital@1&family=Merriweather:ital,wght@0,300;0,400;1,300&family=PT+Serif&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Young+Serif&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        font-family: "PT Serif", sans-serif;
+      }
+
+      .banner {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(
+            rgba(1, 8, 18, 0.5),
+            rgba(0, 0, 0, 0.75)
+          ),
+          url("https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80");
+        background-position: center;
+      }
+
+      .content h1 {
+        font-size: 3rem;
+        margin-top: -70px;
+      }
+      .content {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        color: #fff;
+      }
+      button {
+        width: 200px;
+        padding: 15px 0;
+        text-align: center;
+        margin: 20px 10px;
+        border-radius: 25px;
+        font-weight: bold;
+        border: 2px solid #009688;
+        background: transparent;
+        cursor: pointer;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .more a {
+        color: #fff;
+      }
+
+      span {
+        background: #009688;
+        height: 100%;
+        width: 0;
+        border-radius: 25px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+      }
+
+      button:hover span {
+        width: 100%;
+      }
+
+      button:hover {
+        border: none;
+      }
+    </style>
+    <div class="banner">
+      <div class="content">
+        <h1>Hello <%= userName %></h1>
+        <p>
+          Welcome to My New Project ,Hope!! you enjoy the page and for more
+          information go through given <a>link</a>.
+        </p>
+        <div class="more">
+          <button type="button">
+            <span></span><a href="/Shopping_Page/index.html">Explore</a>
+          </button>
+          <form action="/logout?_method=DELETE" method="POST">
+            <button type="submit"><span></span><a>Logout</a></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

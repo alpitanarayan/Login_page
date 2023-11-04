@@ -1,0 +1,62 @@
+<!-- login.ejs -->
+<html>
+  <head>
+    <title>Login</title>
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+
+  </head>
+
+  <body id="loginPage">
+    <div class="container">
+      <h1>Login</h1>
+      <form method="post" action="/login">
+        <!-- Login form fields -->
+        <div class="input-box">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Please enter your email"
+            required
+            oninput="clearSuggestions(this)"
+          />
+          <i class="bi bi-envelope-fill"></i>
+        </div>
+        <div class="input-box">
+         
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="please enter your password"
+            required
+            oninput="clearSuggestions(this)"
+          />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        
+        <% if (errorMessage) { %>
+          <div id="alert1" class="alert alert-danger">
+          <strong><%= errorMessage %></strong>
+        </div>
+          <% } %>
+
+     
+          <form method="post" action="/login">
+
+        <div class="remember-forgot">
+          <label> <input type="checkbox" />Remember Me </label>
+          <a href="#">Forgot Password</a>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+
+      <!-- Link to the registration page -->
+      <p>Don't have an account? <a href="/register">Sign Up</a></p>
+    </div>
+  </body>
+</html>

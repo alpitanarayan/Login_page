@@ -1,0 +1,63 @@
+<!-- register.ejs -->
+<html>
+  <head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  </head>
+  <body>
+  
+
+    <div class="container">
+      <h1>Sign Up</h1>
+      <form method="post" action="/register">
+        <!-- Registration form fields -->
+        <div class="input-box">
+         
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Please enter username"
+            required
+          />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-box">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Please enter your email"
+            required
+          />
+          <i class="bi bi-envelope-at"></i>
+        </div>
+        <div class="input-box">
+          
+          <i class="bx bxs-lock-alt"></i>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Please enter your password"
+            required
+          />
+          <% if (typeof existingUser !== 'undefined') { %>
+            <div id="alert2" class="alert alert-danger">
+              <strong><%= errorMessage %></strong>
+            </div>
+          <% } %>
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <!-- Button to go to the login page -->
+      <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+  </body>
+</html>
