@@ -6,9 +6,10 @@ const User = require("./connection"); // Import your User model
 const app = express();
 const transporter = require("./sendmail");
 
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 5000;
 
 // Middleware for parsing form data and session management
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
@@ -129,6 +130,61 @@ app.post("/register", async (req, res) => {
 // Main index page (protected)
 app.get("/", requireAuth, (req, res) => {
   res.render("index", { userName: req.session.user.name });
+});
+
+app.get("/views/weather.ejs", (req, res) => {
+  res.render("weather");
+});
+
+app.post("/weather", async (req, res) => {
+  const apiKey = "2051398015683ad78d5d8bf863d77021";
+  const apiUrl =
+    "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+  // const searchBox = document.querySelector(".search input");
+  // const searchBtn = document.querySelector(".search button");
+  // const weatherIcon = document.querySelector(".weather-icon");
+
+  const { city } = req.body;
+  console.log("This is city name in server.js", city);
+  try {
+    const response = await fetch(`${apiUrl}${city}&appid=${apiKey}`);
+    const data = await response.json();
+    console.log(data);
+    if (response.status === 404) {
+      res.status(404).json({ error: "Invalid City Name" });
+    } else {
+      let weatherIcon = "";
+
+      if (data.weather[0].main == "Clouds") {
+        weatherIcon = "clouds.png";
+      } else if (data.weather[0].main == "Clear") {
+        weatherIcon = "clear.png";
+      } else if (data.weather[0].main == "Rain") {
+        weatherIcon = "rain.png";
+      } else if (data.weather[0].main == "Drizzle") {
+        weatherIcon = "drizzle.png";
+      } else if (data.weather[0].main == "Mist") {
+        weatherIcon = "mist.png";
+      }else if (data.weather[0].main == "Haze") {
+        weatherIcon = "haze.png";
+      }
+      const weatherData = {
+        city: data.name,
+        temp: Math.round(data.main.temp),
+        humidity: data.main.humidity,
+        windSpeed: data.wind.speed,
+        weatherMain: weatherIcon,
+      };
+
+      console.log(weatherData);
+
+      res.json(weatherData);
+    }
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 // Logout route

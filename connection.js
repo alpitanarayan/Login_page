@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 
-
 // mongoose.connect("mongodb://127.0.0.1:27017/USER_LOGIN_INFO");
 mongoose
   .connect("mongodb://127.0.0.1:27017/USER_LOGIN_INFO", {
