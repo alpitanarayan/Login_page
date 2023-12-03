@@ -100,9 +100,11 @@ app.post("/register", async (req, res) => {
 
     req.session.user = newUser; // Create a session upon registration
 
+    const Email = process.env.Email;
+
     // Send a welcome email to the user
     const mailOptions = {
-      from: "nodemaillerapp@gmail.com", // Sender's email address
+      from: Email, // Sender's email address
       to: email, // User's email address
       subject: "Welcome to Our App",
       text: `Hi ${name},\n\nWelcome to our app! We're excited to have you on board.\n\nBest regards,\nYour App Team`,
@@ -137,9 +139,8 @@ app.get("/views/weather.ejs", (req, res) => {
 });
 
 app.post("/weather", async (req, res) => {
-  const apiKey = "2051398015683ad78d5d8bf863d77021";
-  const apiUrl =
-    "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+  const apiKey = process.env.apiKey;
+  const apiUrl = process.env.apiUrl;
 
   // const searchBox = document.querySelector(".search input");
   // const searchBtn = document.querySelector(".search button");
